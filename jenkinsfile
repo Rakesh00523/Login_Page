@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/Rakesh00523/Login_Page.git'
+            }
+        }
+
+        stage('Build and Test') {
+            steps {
+                echo 'Build and Test successful!'
+            }
+        }
+
+        stage('Generate Artifact') {
+            steps {
+                bat 'mkdir -p artifacts'
+                bat 'cp 1.html artifacts/'
+            }
+        }
+    }
+
+    post {
+        success {
+            archiveArtifacts artifacts: 'artifacts/*.html',
+            onlyIfSuccessful: true
+
+            echo 'Pipeline completed successfully!'
+        }
+    }
+}
