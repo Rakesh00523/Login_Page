@@ -18,8 +18,8 @@ pipeline {
 
         stage('Generate Artifact') {
             steps {
-                bat 'mkdir -p artifacts'
-                bat 'cp 1.html artifacts/'
+                sh 'mkdir -p artifacts'
+                sh 'cp 1.html artifacts/'
             }
         }
     }
